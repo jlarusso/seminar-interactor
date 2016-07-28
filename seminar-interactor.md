@@ -2,6 +2,7 @@
 
 ### What are they?
 Monadic interactors are something that we came up with on the platform team by combining the control flow benefits of [monads](https://codon.com/refactoring-ruby-with-monads) with the 'roles' aspect of [DCI architecture](http://www.artima.com/articles/dci_vision.html) (Both are previous seminar topics).
+
 In a typical MVC application, lots of behavior-related code bloats the controllers and the models.  This makes code change a painful and error-prone experience. Using interactors is all about letting each component be responsible for one thing:
 
 - The *controller* only deals with stuff related to the HTTP request.
@@ -18,6 +19,7 @@ The way that we've decided to write these interactors is using a concept from fu
 6. enqueue the rendering job into redis
 
 Monads wrap a value in some kind of an object, which is used to pass information to each link in the chain.  The value can contain anything, but there is the expectation that every one one of your functions takes this wrapper as an argument and also returns one.
+
 We haven't even gotten to the good part yet.  My favorite thing about using monads is that error handling becomes pretty straightforward.  Instead of using conditionals or raise/rescue, you can declare that something has failed.  When this happens no subsequent functions in the chain are executed, and your value becomes an error object that you can use to deliver messaging to the caller.  Using the example above, this means that if the project is not found on step 2, steps 3-6 are never executed.  We exit straight out of the chain with an error object or something, which tells us what went wrong.
 
 ### Why are they good?
@@ -43,10 +45,9 @@ end
 ```
 
 ### What do monadic interactors look like?
-Using the [deterministic gem](https://github.com/pzol/deterministic).
+using the [deterministic gem](https://github.com/pzol/deterministic)...
 
 ```ruby
-# Using the deterministic gem in ruby
 # Get a president's biography from wikipedia
 class GetPresidentBioInteractor
 
@@ -120,7 +121,7 @@ end
 
 
 
-# OK. This is how you invoke the interactor:
+# OK so this is how you invoke the interactor:
 # ------------------------------------------
 result = GetPresidentBioInteractor.act(:president_name => 'Teddy Roosevelt')
 
@@ -140,5 +141,5 @@ end
 
 Testing becomes really straightforward now.  Each chain in the monad can be tested independently and you can also test '.act' as a kind of integration.
 
-# Activity
+# Activity: do this and bring it to seminar
 For this seminar, pick a small part of the codebase and implement a monadic interactor similar to the example above.  If you've done this before, feel free to challenge yourself by choosing to implement your interactor in a programming language you are less familiar with ([monet](https://cwmyers.github.io/monet.js/) is an example of a monad library for js).  You can also write it in pseudocode if you want.  Also, bonus points for specs.  On the day of the seminar class, we will go around and show what we have.  It doesn't need to be mergeable code; the idea is to just get some practice identifying refactor candidates and writing interactors.  Think about what you like/don't like about this approach.  What kind of situation does this work really well in?  Any suggestions on how to make our implementation of monadic interactors better?
