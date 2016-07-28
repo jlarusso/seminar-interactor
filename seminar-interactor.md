@@ -141,5 +141,14 @@ end
 
 Testing becomes really straightforward now.  Each chain in the monad can be tested independently and you can also test '.act' as a kind of integration.
 
-# Activity: do this and bring it to seminar
+# Activity: do the following and bring it to seminar
 For this seminar, pick a small part of the codebase and implement a monadic interactor similar to the example above.  If you've done this before, feel free to challenge yourself by choosing to implement your interactor in a programming language you are less familiar with ([monet](https://cwmyers.github.io/monet.js/) is an example of a monad library for js).  You can also write it in pseudocode if you want.  Also, bonus points for specs.  On the day of the seminar class, we will go around and show what we have.  It doesn't need to be mergeable code; the idea is to just get some practice identifying refactor candidates and writing interactors.  Think about what you like/don't like about this approach.  What kind of situation does this work really well in?  Any suggestions on how to make our implementation of monadic interactors better?
+
+### More examples
+If you want more examples of how we've used these in real code, check out:
+
+- [create project interactor](https://github.com/animoto/api/blob/master/app/interactors/create_project_interactor.rb)
+- [create rendering job interactor](https://github.com/animoto/api/blob/master/app/interactors/create_rendering_job_interactor.rb)
+- [exports interactors] (https://github.com/animoto/client_service/tree/master/app/interactors/exports)
+- [asset library sync interactor] (https://github.com/animoto/api/blob/master/app/interactors/asset_library/sync_interactor.rb)
+
