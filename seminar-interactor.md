@@ -13,7 +13,7 @@ The way that we've decided to write these interactors is using a concept from fu
 
 1. validate that you have the params you will need
 2. find the project
-3. find or create the render model
+3. find or create the render
 4. establish what resolution the video should be
 5. update the project to be 'finalized' if the video is not a preview
 6. enqueue the rendering job into redis
