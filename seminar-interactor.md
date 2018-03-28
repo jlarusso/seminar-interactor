@@ -102,7 +102,7 @@ class GetPresidentBioInteractor
 
   # Here, we are looking through the HTML in the response and trying to find the president's bio.
   def self.select_bio(params)
-    params[:bio] = parse_through_html_and_select_bio_somehow(params[:response])
+    params[:bio] = parse_through_html_and_select_bio(params[:response])
     if params[:bio].present?
       Success(params)
     else
